@@ -1,0 +1,21 @@
+{{define "main"}}
+
+<!--$paginator-->
+{{if .IsHome}}
+{{.Scratch.Set "Paginator" (.Paginate (where .Site.RegularPages "Type" "in" site.Params.mainSections))}}
+{{else}}
+{{.Scratch.Set "Paginator" .Paginator}}
+{{end}}
+{{$paginator:=(.Scratch.Get "Paginator")}}
+
+<!--list-->
+<ul>
+	{{range $paginator.Pages}}
+	<li>{{.Date.Format "2006-01-02"}} | <a href="{{.RelPermalink}}">{{.Title}}</a></li>
+	{{end}}
+</ul>
+
+<!--pagination-->
+{{template "_internal/pagination.html" .}}
+
+{{end}}

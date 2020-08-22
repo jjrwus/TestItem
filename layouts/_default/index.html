@@ -1,0 +1,14 @@
+home page
+
+
+{{.Site.AllPages}}
+
+
+{{$related := .Site.AllPages}}
+
+{{with $related}}
+{{ range $related  }}
+<li><a href="{{.RelPermalink}}">{{.Title}}</a></li>
+{{ end }}
+
+{{end}}
